@@ -1,5 +1,17 @@
 body{
-    background-color : #95a5a6;
+    background-color : #B8C2CC;
+}
+
+.clock{
+    color: white;
+    font-size: 90px;
+    text-align: center;
+    text-shadow: 2px 2px 8px black;
+}
+
+.clock h1{
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 .form,
@@ -7,17 +19,24 @@ body{
     display: none;
 }
 
-.showing{
-    display: block;
+.form input{
+    font-size: 30px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.toDoForm{
+    text-align: center;
+}
+
+.toDoForm input{
+    font-size: 30px;
+}
+
+.showing{
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px black;
 }
 
 .bgImage{
@@ -28,4 +47,30 @@ body{
     height: 100%;
     z-index: -1;    
     animation: fadeIn .5s linear;
+}
+
+.todoList{
+    margin-left: 30%;
+    list-style-type: none;
+    font-size: 20px;
+    color: white;
+    text-shadow: 2px 2px darkslategrey;
+}
+
+button{
+    background: Transparent;
+    outline: none;
+    border: none;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.weather{
+    position: fixed;
+    top: 0; 
+    right: 0;
+    background-color: lightblue;
+    width: 150px;
+    text-align: center;
 }
