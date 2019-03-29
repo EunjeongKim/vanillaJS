@@ -8,6 +8,7 @@ const USER_LS = "currentUser",
 
 function saveName(text){
     localStorage.setItem(USER_LS, text);
+    location.reload();
 }
 function handleSubmit(event){
     event.preventDefault();

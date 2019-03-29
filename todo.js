@@ -5,26 +5,39 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 const TODOS_LS = "toDos";
 let toDos = [];
 
-function deleteToDo(event){
+function showTodo() {
+    if (localStorage.getItem(USER_LS) !== null) {
+        toDoForm.style.display = "block";
+        toDoList.style.display = "block";
+    }
+    else {
+        toDoForm.style.display = "none";
+        toDoList.style.display = "none";
+        toDos = [];
+        localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+    }
+}
+
+function deleteToDo(event) {
     const btn = event.target;
     const li = btn.parentNode;
     toDoList.removeChild(li);
-    const cleanToDos = toDos.filter(function(toDo){
+    const cleanToDos = toDos.filter(function (toDo) {
         return toDo.id !== parseInt(li.id);
     });
     toDos = cleanToDos;
     saveToDos();
 }
 
-function saveToDos(){
+function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
-function paintToDo(text){
+function paintToDo(text) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
-    const newID = toDos.length+1;
+    const newID = toDos.length + 1;
     delBtn.innerText = "❌";
     delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
@@ -32,7 +45,7 @@ function paintToDo(text){
     li.style.color = "white";
     li.appendChild(delBtn);
     li.appendChild(span);
-    toDoList.append(li);  
+    toDoList.append(li);
 
     const toDoObj = {
         text: text,
@@ -42,24 +55,26 @@ function paintToDo(text){
     saveToDos();
 }
 
-function handleSubmit(){
+function handleSubmit() {
     event.preventDefault();
     const currentValue = toDoInput.value;
     paintToDo(currentValue);
-    toDoInput.value="";
+    toDoInput.value = "";
 }
 
-function loadToDos(){
+function loadToDos() {
     const loadedToDos = localStorage.getItem(TODOS_LS);
-    if(loadedToDos !== null){
+    if (loadedToDos !== null) {
         const parsedToDos = JSON.parse(loadedToDos);
-        parsedToDos.forEach(function(todo){
+        parsedToDos.forEach(function (todo) {
             paintToDo(todo.text);
         });
     }
 }
 
-function init(){
+function init() {
+    showTodo();
+
     loadToDos();
     toDoForm.addEventListener("submit", handleSubmit);
 }
